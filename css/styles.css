@@ -296,6 +296,71 @@ section{padding:96px 0;}
 .emergency-banner h4{font-size:16px;color:var(--white);letter-spacing:0.02em;}
 .emergency-banner p{color:var(--steel);font-size:13.5px;margin-top:4px;}
 
+/* =========================== PROJECTS =========================== */
+.scroll-hint{
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--steel);white-space:nowrap;
+}
+.scroll-hint svg{width:15px;height:15px;color:var(--blue-bright);}
+
+.projects-rail{
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:6px 6px 20px;
+  margin:0 -6px;
+  scroll-snap-type:x proximity;
+  scrollbar-width:thin;
+  scrollbar-color:var(--panel-line-strong) transparent;
+}
+.projects-rail:focus-visible{outline:2px solid var(--blue-bright);outline-offset:4px;}
+.projects-rail::-webkit-scrollbar{height:8px;}
+.projects-rail::-webkit-scrollbar-track{background:transparent;}
+.projects-rail::-webkit-scrollbar-thumb{background:var(--panel-line-strong);border-radius:4px;}
+.projects-rail::-webkit-scrollbar-thumb:hover{background:var(--steel-dim);}
+
+.project-card{
+  flex:0 0 auto;
+  width:340px;
+  scroll-snap-align:start;
+  background:var(--black);
+  border:1px solid var(--panel-line);
+  border-radius:3px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition:border-color .18s ease, transform .18s ease;
+}
+.project-card:hover{border-color:var(--panel-line-strong);transform:translateY(-3px);}
+
+.project-media{
+  position:relative;
+  height:170px;
+  background:
+    repeating-linear-gradient(135deg, rgba(244,246,248,0.035) 0 2px, transparent 2px 14px),
+    linear-gradient(160deg, rgba(30,90,168,0.16), rgba(200,30,44,0.10));
+  border-bottom:1px solid var(--panel-line);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+}
+.project-media-icon{width:34px;height:34px;color:var(--steel);opacity:0.7;}
+.project-media-label{
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--steel-dim);
+}
+
+.project-body{padding:24px;flex:1;display:flex;flex-direction:column;}
+.project-tag{
+  display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--blue-bright);background:var(--blue-dim);border:1px solid rgba(62,130,230,0.3);
+  padding:5px 10px;border-radius:2px;margin-bottom:14px;
+}
+.project-tag svg{width:12px;height:12px;}
+.project-body h3{font-size:17px;color:var(--white);font-weight:500;margin-bottom:10px;letter-spacing:0.01em;}
+.project-body p{color:var(--steel);font-size:13.5px;line-height:1.6;}
+
 /* =========================== OWNER =========================== */
 .owner-grid{display:grid;grid-template-columns:0.7fr 1.3fr;gap:64px;align-items:center;}
 .owner-badge{
@@ -395,25 +460,23 @@ section{padding:96px 0;}
 }
 .sticky-call svg{width:16px;height:16px;}
 
-/* =========================== RESPONSIVE =========================== */
-@media (min-width:900px){
+/* =========================== RESPONSIVE =========================== *
+   Breakpoint scale used throughout:
+   XL  — 1280px and up   (large desktop; base styles above target this)
+   LG  — 1024px – 1279px (small desktop / large tablet landscape)
+   MD  — 768px  – 1023px (tablet)
+   SM  — 480px  – 767px  (large phone)
+   XS  — up to 479px     (small phone)
+   ==================================================================== */
+
+/* ---------- XL: full inline nav + phone number only at true desktop width ---------- */
+@media (min-width:1280px){
   .header-phone{display:flex;}
 }
 
-@media (max-width:980px){
-  .hero .wrap{grid-template-columns:1fr;gap:44px;}
-  .gauge-wrap{order:-1;max-width:280px;margin:0 auto;}
-  .about-grid{grid-template-columns:1fr;gap:44px;}
-  .owner-grid{grid-template-columns:1fr;}
-  .owner-badge{max-width:280px;margin:0 auto;}
-  .services-grid{grid-template-columns:repeat(2,1fr);}
-  .split{grid-template-columns:1fr;}
-  .split-panel{padding:64px 28px;}
-  .split-panel.is-quote{border-right:none;border-bottom:1px solid var(--panel-line);}
-  .footer-top{grid-template-columns:1fr 1fr;row-gap:36px;}
-}
-
-@media (max-width:760px){
+/* ---------- LG and below: collapse to hamburger nav (5 links + phone + CTA
+   don't reliably fit a single row once we're off full desktop) ---------- */
+@media (max-width:1279px){
   .main-nav{
     position:fixed;top:80px;left:0;right:0;bottom:0;
     background:var(--black);
@@ -422,24 +485,102 @@ section{padding:96px 0;}
     opacity:0;pointer-events:none;
     transition:opacity .18s ease, transform .18s ease;
     z-index:90;
+    overflow-y:auto;
   }
   .main-nav.is-open{opacity:1;pointer-events:auto;transform:translateY(0);}
-  .main-nav ul{flex-direction:column;align-items:flex-start;gap:8px;}
-  .main-nav a{display:block;padding:14px 0;font-size:15px;width:100%;border-bottom:1px solid var(--panel-line);}
+  .main-nav ul{flex-direction:column;align-items:flex-start;gap:8px;max-width:var(--container);margin:0 auto;}
+  .main-nav a{display:block;padding:14px 4px;font-size:16px;width:100%;border-bottom:1px solid var(--panel-line);}
   .nav-toggle{display:flex;}
   .header-actions .btn-outline{display:none;}
-  section{padding:64px 0;}
-  .services-grid{grid-template-columns:1fr 1fr;}
-  .form-row{grid-template-columns:1fr;}
-  .footer-top{grid-template-columns:1fr;}
-  .sticky-call{display:flex;}
-  body{padding-bottom:52px;}
-  .stat-row{grid-template-columns:1fr;}
-  .owner-list{grid-template-columns:1fr;}
 }
 
-@media (max-width:520px){
-  .services-grid{grid-template-columns:1fr;}
+/* ---------- LG: 1024–1279 — roomy two-column layouts still fit ---------- */
+@media (max-width:1279px) and (min-width:1024px){
+  .hero .wrap{gap:40px;}
+  .services-grid{grid-template-columns:repeat(3,1fr);}
+}
+
+/* ---------- MD: 768–1023 — tablets. Stack the big two-column sections,
+   drop grids to 2-up, keep everything comfortably tappable ---------- */
+@media (max-width:1023px){
+  .hero{padding:56px 0 72px;}
+  .hero .wrap{grid-template-columns:1fr;gap:48px;}
+  .gauge-wrap{order:-1;max-width:320px;margin:0 auto;}
+  .hero-meta{gap:22px;}
+
+  .about-grid{grid-template-columns:1fr;gap:44px;}
+
+  .owner-grid{grid-template-columns:1fr;gap:40px;}
+  .owner-badge{max-width:300px;margin:0 auto;}
+  .owner-list{grid-template-columns:1fr 1fr;}
+
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+
+  .split{grid-template-columns:1fr;}
+  .split-panel{padding:64px 32px;}
+  .split-panel.is-quote{border-right:none;border-bottom:1px solid var(--panel-line);}
+
+  .footer-top{grid-template-columns:1fr 1fr;row-gap:40px;}
+
+  .project-card{width:min(78vw,340px);}
+}
+
+/* ---------- SM: 480–767 — large phones. Section rhythm tightens,
+   everything goes single-column, sticky call bar appears ---------- */
+@media (max-width:767px){
+  section{padding:56px 0;}
+  .wrap{padding:0 20px;}
+
+  .services-toolbar{align-items:flex-start;}
+  .services-grid{grid-template-columns:1fr 1fr;}
+  .service-card{padding:26px 20px;}
+
+  .form-row{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr;row-gap:32px;}
+
+  .sticky-call{display:flex;}
+  body{padding-bottom:54px;}
+
+  .stat-row{grid-template-columns:1fr;}
+  .owner-list{grid-template-columns:1fr;}
+
   .hero-ctas{flex-direction:column;align-items:stretch;}
   .hero-ctas .btn{width:100%;}
+
+  .split-panel{padding:52px 20px;}
+
+  .project-card{width:min(82vw,320px);}
+  .project-media{height:150px;}
+}
+
+/* ---------- XS: up to 479px — small phones. Final tightening pass ---------- */
+@media (max-width:479px){
+  .wrap{padding:0 16px;}
+  .hero{padding:48px 0 64px;}
+  .hero-badge{font-size:11px;padding:7px 12px;}
+  .hero-ctas{gap:12px;}
+  .hero-meta{gap:18px;flex-direction:column;align-items:flex-start;}
+
+  section{padding:48px 0;}
+  .section-head p{font-size:15px;}
+
+  .services-grid{grid-template-columns:1fr;}
+  .services-legend{gap:14px;}
+
+  .emergency-banner{padding:22px 20px;flex-direction:column;align-items:flex-start;}
+  .emergency-banner .btn{width:100%;}
+
+  .owner-badge{max-width:220px;}
+  .owner-monogram{font-size:72px;}
+  .owner-quote{font-size:17px;}
+
+  .form-field input,.form-field select,.form-field textarea{font-size:16px;} /* avoids iOS auto-zoom on focus */
+
+  .contact-card{padding:16px 18px;gap:12px;}
+
+  .footer-bottom{flex-direction:column;align-items:flex-start;}
+
+  .project-card{width:82vw;}
+  .project-media{height:130px;}
+  .project-body{padding:20px;}
 }
