@@ -13,6 +13,9 @@
 <symbol id="icon-arrow-lr" viewBox="0 0 24 24">
 <path d="M3 12h18M3 12l5-5M3 12l5 5M21 12l-5-5M21 12l-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
+<symbol id="icon-wrench" viewBox="0 0 24 24">
+<path d="M14.7 6.3a4.5 4.5 0 0 0-6 5.6L3 17.6 6.4 21l5.7-5.7a4.5 4.5 0 0 0 5.6-6l-3 3-2.7-2.7 3-3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+</symbol>
 <symbol id="icon-phone" viewBox="0 0 24 24">
 <path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1.1.5 1.1 1.1V20c0 .6-.5 1.1-1.1 1.1C10.9 21.1 2.9 13.1 2.9 3.1 2.9 2.5 3.4 2 4 2h3.3c.6 0 1.1.5 1.1 1.1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1L6.6 10.8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
 </symbol>
@@ -135,8 +138,8 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#owner">The Owner</a></li>
-        <li><a href="#quote">Get a Quote</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li class="nav-cta-item"><a href="#quote" class="btn btn-primary btn-block">Request Service</a></li>
       </ul>
     </nav>
 
@@ -145,7 +148,7 @@
         <svg viewBox="0 0 24 24"><use href="#icon-phone"></use></svg>
         603-387-0156
       </a>
-      <a href="#quote" class="btn btn-outline">Get a Quote</a>
+      <a href="#quote" class="btn btn-outline">Request Service</a>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
         <svg id="nav-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
@@ -162,9 +165,10 @@
         <span class="hero-badge"><span class="dot"></span> Now scheduling across New Hampshire</span>
         <h1>Comfort You Can <span class="accent-blue">Count On.</span> Prices You Can <span class="accent-red">Trust.</span></h1>
         <p class="hero-motto"><strong>Honest Work.</strong> Fair Pricing.</p>
-        <p class="hero-lede">A. Bordeau Mechanical LLC installs, services, and repairs heating and cooling systems for residential and small commercial across New Hampshire &mdash; from oil burners to mini splits &mdash; with the kind of straight answers you don't usually get from a contractor.</p>
+        <p class="hero-lede-lead">Professional Heating &amp; Cooling. 24/7 Across New Hampshire.</p>
+        <p class="hero-lede">Residential and light commercial HVAC installation, replacement, service, and repair from a locally owned and operated New Hampshire company. From emergency heating repairs to complete HVAC system installations, A. Bordeau Mechanical provides straightforward recommendations, quality workmanship, and dependable service.</p>
         <div class="hero-ctas">
-          <a href="#quote" class="btn btn-primary">Get a Free Quote</a>
+          <a href="#quote" class="btn btn-primary">Request Service</a>
           <a href="tel:6033870156" class="btn btn-outline">
             <svg viewBox="0 0 24 24" width="15" height="15"><use href="#icon-phone"></use></svg>
             Call 603-387-0156
@@ -173,15 +177,27 @@
         <div class="hero-meta">
           <div class="hero-meta-item">
             <svg viewBox="0 0 24 24"><use href="#icon-clock"></use></svg>
-            <span class="label">24/7 <strong>Emergency Service</strong></span>
+            <span class="label">24/7 <strong>Service</strong></span>
           </div>
           <div class="hero-meta-item">
             <svg viewBox="0 0 24 24"><use href="#icon-map-pin"></use></svg>
-            <span class="label">Serving <strong>all of New Hampshire</strong></span>
+            <span class="label">Serving <strong>New Hampshire</strong></span>
           </div>
           <div class="hero-meta-item">
             <svg viewBox="0 0 24 24"><use href="#icon-shield"></use></svg>
             <span class="label">Owner-<strong>operated</strong></span>
+          </div>
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 200 260"><use href="#icon-map-nh"></use></svg>
+            <span class="label">State-<strong>wide Service</strong></span>
+          </div>
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24"><use href="#icon-wrench"></use></svg>
+            <span class="label">Local <strong>HVAC Company</strong></span>
+          </div>
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 48 48"><use href="#icon-gauge-mark"></use></svg>
+            <span class="label">Heating &amp; <strong>Cooling</strong></span>
           </div>
         </div>
       </div>
@@ -451,14 +467,14 @@
     </div>
   </section>
 
-  <!-- =========================== GET A QUOTE + CONTACT (split) =========================== -->
+  <!-- =========================== REQUEST SERVICE + CONTACT (split) =========================== -->
   <section style="padding:0;" id="quote-contact-wrap">
     <div class="split">
 
-      <!-- GET A QUOTE -->
+      <!-- REQUEST SERVICE -->
       <div class="split-panel is-quote" id="quote">
         <div class="section-head">
-          <span class="eyebrow">Get a Quote</span>
+          <span class="eyebrow">Request Service</span>
           <h2>Schedule a consultation.</h2>
           <p>Tell us what's going on and what system you have. Andrew will follow up to schedule a visit and walk you through pricing &mdash; no pressure, no surprises.</p>
         </div>
@@ -498,7 +514,7 @@
             <label for="q-details">Tell us about the job</label>
             <textarea id="q-details" name="details" placeholder="What's the system, what's it doing (or not doing), and when works for a visit?"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-block">Request My Quote</button>
+          <button type="submit" class="btn btn-primary btn-block">Request Service</button>
           <p class="form-note">Submitting opens your email client, addressed to A. Bordeau Mechanical, with your details filled in.</p>
           <p class="form-status" id="quote-status"></p>
         </form>
@@ -617,7 +633,7 @@
           <li><a href="#services">Services</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#owner">The Owner</a></li>
-          <li><a href="#quote">Get a Quote</a></li>
+          <li><a href="#quote">Request Service</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>

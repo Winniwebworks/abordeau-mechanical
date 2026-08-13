@@ -143,6 +143,11 @@ button{font-family:inherit;cursor:pointer;}
 }
 .main-nav a:hover::after{width:100%;}
 
+/* the "Request Service" item lives inside the nav list markup so it's
+   always reachable from the mobile menu, but it only renders there —
+   on the inline desktop nav it stays hidden (the header button covers it) */
+.nav-cta-item{display:none;}
+
 .header-actions{display:flex;align-items:center;gap:18px;}
 .header-phone{
   display:flex;align-items:center;gap:8px;
@@ -201,17 +206,20 @@ button{font-family:inherit;cursor:pointer;}
   text-transform:uppercase;color:var(--steel);margin-top:18px;
 }
 .hero-motto strong{color:var(--white);font-weight:600;}
+.hero-lede-lead{
+  margin-top:22px;max-width:54ch;color:var(--white);font-size:18px;font-weight:700;line-height:1.4;
+}
 .hero-lede{
-  margin-top:22px;max-width:52ch;color:var(--steel);font-size:16.5px;
+  margin-top:12px;max-width:54ch;color:var(--steel);font-size:16px;line-height:1.65;
 }
 .hero-ctas{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
 .hero-meta{
-  display:flex;gap:28px;margin-top:44px;padding-top:28px;border-top:1px solid var(--panel-line);
+  display:flex;gap:26px 28px;margin-top:44px;padding-top:28px;border-top:1px solid var(--panel-line);
   flex-wrap:wrap;
 }
 .hero-meta-item{display:flex;align-items:center;gap:10px;}
 .hero-meta-item svg{width:18px;height:18px;color:var(--steel);}
-.hero-meta-item .label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--steel);}
+.hero-meta-item .label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--steel);white-space:nowrap;}
 .hero-meta-item .label strong{color:var(--white);font-weight:500;}
 
 /* --- signature gauge graphic --- */
@@ -480,18 +488,29 @@ section{padding:96px 0;}
   .main-nav{
     position:fixed;top:80px;left:0;right:0;bottom:0;
     background:var(--black);
-    padding:32px 24px;
+    padding:28px 24px 32px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
     transform:translateY(-8px);
     opacity:0;pointer-events:none;
     transition:opacity .18s ease, transform .18s ease;
     z-index:90;
-    overflow-y:auto;
+    overflow-y:auto; /* safety fallback only — layout is sized to avoid needing it */
   }
   .main-nav.is-open{opacity:1;pointer-events:auto;transform:translateY(0);}
-  .main-nav ul{flex-direction:column;align-items:flex-start;gap:8px;max-width:var(--container);margin:0 auto;}
-  .main-nav a{display:block;padding:14px 4px;font-size:16px;width:100%;border-bottom:1px solid var(--panel-line);}
+  .main-nav ul{flex-direction:column;align-items:stretch;gap:6px;max-width:420px;width:100%;margin:0 auto;}
+  .main-nav a{display:block;padding:16px 4px;font-size:17px;width:100%;border-bottom:1px solid var(--panel-line);}
   .nav-toggle{display:flex;}
   .header-actions .btn-outline{display:none;}
+
+  /* the Request Service CTA only appears here, inside the full mobile menu */
+  .nav-cta-item{display:block;margin-top:22px;}
+  .nav-cta-item a{
+    display:flex;width:100%;padding:16px 22px;border-bottom:none;
+    font-size:13.5px;
+  }
+  .nav-cta-item a::after{display:none;}
 }
 
 /* ---------- LG: 1024–1279 — roomy two-column layouts still fit ---------- */

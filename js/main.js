@@ -44,7 +44,7 @@
       var service = quoteForm.service.value.trim();
       var details = quoteForm.details.value.trim();
 
-      var subject = "Quote Request: " + (service || "HVAC Service") + " - " + name;
+      var subject = "Service Request: " + (service || "HVAC Service") + " - " + name;
       var bodyLines = [
         "Name: " + name,
         "Phone: " + phone,
@@ -62,7 +62,7 @@
 
       var status = document.getElementById("quote-status");
       if (status) {
-        status.textContent = "Opening your email client to send this quote request to A. Bordeau Mechanical\u2026";
+        status.textContent = "Opening your email client to send this service request to A. Bordeau Mechanical\u2026";
         status.classList.add("is-visible");
       }
     });
