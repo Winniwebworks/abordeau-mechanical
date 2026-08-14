@@ -350,17 +350,50 @@ section{padding:96px 0;}
 .service-scope-panel p{color:var(--steel);font-size:14.5px;line-height:1.6;}
 
 
-.emergency-banner{
-  margin-top:1px;
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;
-  background:linear-gradient(90deg, rgba(200,30,44,0.16), rgba(200,30,44,0.03));
-  border:1px solid rgba(232,67,78,0.35);border-radius:3px;
-  padding:26px 30px;margin-top:28px;
+/* --- 24/7 availability panel --- */
+.availability-panel{
+  display:grid;grid-template-columns:1.2fr 1fr;gap:0;
+  margin-top:28px;border-radius:3px;overflow:hidden;
+  border:1px solid rgba(232,67,78,0.35);
+  background:linear-gradient(160deg, rgba(200,30,44,0.14), rgba(200,30,44,0.02) 60%);
 }
-.emergency-banner-text{display:flex;align-items:center;gap:16px;}
-.emergency-banner-text svg{width:26px;height:26px;color:var(--red-bright);flex:0 0 auto;}
-.emergency-banner h4{font-size:16px;color:var(--white);letter-spacing:0.02em;}
-.emergency-banner p{color:var(--steel);font-size:13.5px;margin-top:4px;}
+.availability-copy{padding:44px 48px;}
+.availability-copy .eyebrow{margin-bottom:16px;}
+.availability-copy .eyebrow::before{background:var(--red-bright);}
+.availability-copy h3{
+  font-size:clamp(21px,2.6vw,28px);color:var(--white);letter-spacing:0.01em;
+  margin-bottom:18px;line-height:1.2;
+}
+.availability-copy p{color:var(--steel);font-size:15px;line-height:1.65;margin-bottom:14px;}
+.availability-copy p:last-child{margin-bottom:0;}
+
+.availability-card{
+  background:var(--black-2);border-left:1px solid rgba(232,67,78,0.35);
+  padding:40px 44px;display:flex;flex-direction:column;justify-content:center;gap:32px;
+}
+.availability-hours-head{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.availability-hours-head svg{width:20px;height:20px;color:var(--red-bright);flex:0 0 auto;}
+.availability-hours-head h4{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);
+}
+.hours-row{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:12px 0;border-bottom:1px solid var(--panel-line);
+}
+.hours-day{font-size:14.5px;color:var(--steel);}
+.hours-value{
+  font-family:var(--font-mono);font-size:12.5px;letter-spacing:0.06em;text-transform:uppercase;
+  padding:5px 11px;border-radius:2px;
+}
+.hours-value.is-open{color:var(--white);background:rgba(232,67,78,0.16);border:1px solid rgba(232,67,78,0.4);}
+.hours-value.is-closed{color:var(--steel);background:transparent;border:1px solid var(--panel-line-strong);}
+.hours-note{color:var(--steel-dim);font-size:12.5px;line-height:1.55;margin-top:14px;}
+
+.availability-cta{padding-top:24px;border-top:1px solid var(--panel-line);}
+.availability-cta-label{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--white);margin-bottom:14px;
+}
 
 /* =========================== PROJECTS =========================== */
 .scroll-hint{
@@ -598,6 +631,10 @@ section{padding:96px 0;}
 
   .service-detail-list{grid-template-columns:1fr;}
 
+  .availability-panel{grid-template-columns:1fr;}
+  .availability-copy{padding:36px 36px 8px;}
+  .availability-card{border-left:none;border-top:1px solid rgba(232,67,78,0.35);padding:32px 36px;}
+
   .split{grid-template-columns:1fr;}
   .split-panel{padding:64px 32px;}
   .split-panel.is-quote{border-right:none;border-bottom:1px solid var(--panel-line);}
@@ -637,6 +674,9 @@ section{padding:96px 0;}
   .split-panel{padding:52px 20px;}
   .area-panel{padding:28px 24px;}
 
+  .availability-copy{padding:28px 24px 4px;}
+  .availability-card{padding:24px;gap:24px;}
+
   .project-card{width:min(82vw,320px);}
   .project-media{height:150px;}
 }
@@ -668,6 +708,12 @@ section{padding:96px 0;}
 
   .emergency-banner{padding:22px 20px;flex-direction:column;align-items:flex-start;}
   .emergency-banner .btn{width:100%;}
+
+  .availability-copy{padding:24px 18px 4px;}
+  .availability-copy h3{font-size:19px;}
+  .availability-copy p{font-size:14px;}
+  .availability-card{padding:20px 18px;gap:20px;}
+  .hours-day{font-size:13.5px;}
 
   .owner-badge{max-width:220px;}
   .owner-monogram{font-size:72px;}
