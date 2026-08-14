@@ -125,7 +125,7 @@ button{font-family:inherit;cursor:pointer;}
 .brand-name{font-family:var(--font-display);font-weight:600;font-size:16.5px;letter-spacing:0.02em;text-transform:uppercase;}
 .brand-sub{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.14em;color:var(--steel);text-transform:uppercase;margin-top:2px;}
 
-.main-nav ul{display:flex;gap:34px;align-items:center;}
+.main-nav ul{display:flex;gap:clamp(20px,2.6vw,38px);align-items:center;}
 .main-nav a{
   font-family:var(--font-mono);
   font-size:12.5px;
