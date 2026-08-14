@@ -35,6 +35,18 @@
     rule.appendChild(frag);
   });
 
+  /* ---------- services accordion: keep one panel open at a time ---------- */
+  var serviceDetails = document.querySelectorAll(".service-detail");
+  serviceDetails.forEach(function (detail) {
+    detail.addEventListener("toggle", function () {
+      if (detail.open) {
+        serviceDetails.forEach(function (other) {
+          if (other !== detail) other.removeAttribute("open");
+        });
+      }
+    });
+  });
+
   /* ---------- quote form -> mailto ---------- */
   var quoteForm = document.getElementById("quote-form");
   if (quoteForm) {
