@@ -308,6 +308,18 @@ section{padding:96px 0;}
 .service-detail.is-heat .service-detail-icon{color:var(--red-bright);}
 .service-detail.is-cool .service-detail-icon{color:var(--blue-bright);}
 
+.service-detail.is-featured{
+  background:linear-gradient(90deg, rgba(200,30,44,0.08), rgba(200,30,44,0) 65%);
+  box-shadow:inset 3px 0 0 var(--red-bright);
+}
+.service-detail.is-featured summary:hover{background:rgba(200,30,44,0.1);}
+.service-detail-badge{
+  display:inline-block;margin-left:10px;padding:3px 9px;
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--red-bright);border:1px solid var(--red-bright);border-radius:20px;
+  vertical-align:middle;
+}
+
 .service-detail-heading{flex:1;min-width:0;}
 .service-detail-heading h3{font-size:16.5px;color:var(--white);font-weight:500;letter-spacing:0.01em;margin-bottom:5px;}
 .service-detail-heading p{color:var(--steel);font-size:13.5px;line-height:1.5;}
