@@ -47,38 +47,59 @@
     });
   });
 
-  /* ---------- quote form -> mailto ---------- */
+  /* ---------- quote form -> Formspree ---------- */
   var quoteForm = document.getElementById("quote-form");
   if (quoteForm) {
     quoteForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      var name = quoteForm.name.value.trim();
-      var phone = quoteForm.phone.value.trim();
-      var town = quoteForm.town.value.trim();
-      var service = quoteForm.service.value.trim();
-      var details = quoteForm.details.value.trim();
-
-      var subject = "Service Request: " + (service || "HVAC Service") + " - " + name;
-      var bodyLines = [
-        "Name: " + name,
-        "Phone: " + phone,
-        "Town/City: " + (town || "-"),
-        "Service Needed: " + (service || "-"),
-        "",
-        "Details:",
-        details || "-"
-      ];
-      var mailto = "mailto:abordeaumechanical@gmail.com" +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(bodyLines.join("\n"));
-
-      window.location.href = mailto;
 
       var status = document.getElementById("quote-status");
+      var submitBtn = quoteForm.querySelector("button[type=submit]");
+
+      if (!quoteForm.checkValidity()) {
+        quoteForm.reportValidity();
+        return;
+      }
+
+      if (submitBtn) submitBtn.disabled = true;
       if (status) {
-        status.textContent = "Opening your email client to send this service request to A. Bordeau Mechanical\u2026";
+        status.textContent = "Sending your request\u2026";
         status.classList.add("is-visible");
       }
+
+      var formData = new FormData(quoteForm);
+      if (!quoteForm.urgent.checked) {
+        formData.set("urgent", "No");
+      }
+
+      fetch(quoteForm.action, {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            quoteForm.reset();
+            if (status) {
+              status.textContent = "Thanks! Your service request has been sent \u2014 Andrew will follow up soon.";
+            }
+          } else {
+            response.json().then(function (data) {
+              var message = (data && data.errors)
+                ? data.errors.map(function (err) { return err.message; }).join(", ")
+                : "Something went wrong. Please call 603-387-0156 instead.";
+              if (status) status.textContent = message;
+            }).catch(function () {
+              if (status) status.textContent = "Something went wrong. Please call 603-387-0156 instead.";
+            });
+          }
+        })
+        .catch(function () {
+          if (status) status.textContent = "Something went wrong. Please call 603-387-0156 instead.";
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   }
 

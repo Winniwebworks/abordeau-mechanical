@@ -581,10 +581,10 @@
           <p>Tell us what's going on and what system you have. Andrew will follow up to schedule a visit and walk you through pricing &mdash; no pressure, no surprises.</p>
         </div>
 
-        <form id="quote-form" novalidate>
+        <form id="quote-form" novalidate action="https://formspree.io/f/maewapny" method="POST">
           <div class="form-row">
             <div class="form-field">
-              <label for="q-name">Full Name</label>
+              <label for="q-name">Name</label>
               <input type="text" id="q-name" name="name" required autocomplete="name">
             </div>
             <div class="form-field">
@@ -592,32 +592,47 @@
               <input type="tel" id="q-phone" name="phone" required autocomplete="tel">
             </div>
           </div>
-          <div class="form-field">
-            <label for="q-town">Town / City</label>
-            <input type="text" id="q-town" name="town" placeholder="e.g. Alton, NH" autocomplete="address-level2">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="q-email">Email Address</label>
+              <input type="email" id="q-email" name="email" required autocomplete="email">
+            </div>
+            <div class="form-field">
+              <label for="q-town">Town / City</label>
+              <input type="text" id="q-town" name="town" placeholder="e.g. Alton, NH" required autocomplete="address-level2">
+            </div>
           </div>
           <div class="form-field">
             <label for="q-service">Service Needed</label>
             <select id="q-service" name="service" required>
               <option value="" disabled selected>Select a service&hellip;</option>
-              <option>Oil Burner</option>
-              <option>Gas Burner</option>
-              <option>On-Demand Water Heater</option>
-              <option>Air Conditioning</option>
-              <option>Mini Split AC / Heat Pump</option>
-              <option>Oil Tank Removal / Install</option>
-              <option>Hydronic Heat System</option>
-              <option>Forced Air System</option>
-              <option>Emergency / After-Hours</option>
-              <option>Not Sure &mdash; Need Advice</option>
+              <option>Heating Repair</option>
+              <option>Boiler Service</option>
+              <option>Furnace Service</option>
+              <option>Air Conditioning Repair</option>
+              <option>Mini-Split / Heat Pump</option>
+              <option>Water Heater</option>
+              <option>Oil Tank</option>
+              <option>HVAC Maintenance</option>
+              <option>New System Estimate</option>
+              <option>Ductwork</option>
+              <option>New Construction</option>
+              <option>Commercial HVAC</option>
+              <option>Other</option>
             </select>
           </div>
           <div class="form-field">
-            <label for="q-details">Tell us about the job</label>
+            <label for="q-details">Tell Us About Your Project or HVAC Problem</label>
             <textarea id="q-details" name="details" placeholder="What's the system, what's it doing (or not doing), and when works for a visit?"></textarea>
           </div>
+          <div class="form-field form-field-checkbox">
+            <label class="checkbox-label" for="q-urgent">
+              <input type="checkbox" id="q-urgent" name="urgent" value="Yes &mdash; this is urgent">
+              <span>This is an urgent service request</span>
+            </label>
+          </div>
           <button type="submit" class="btn btn-primary btn-block">Request Service</button>
-          <p class="form-note">Submitting opens your email client, addressed to A. Bordeau Mechanical, with your details filled in.</p>
+          <p class="form-note">Submitting sends your request directly to A. Bordeau Mechanical.</p>
           <p class="form-status" id="quote-status"></p>
         </form>
       </div>
