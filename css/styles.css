@@ -287,6 +287,20 @@ section{padding:96px 0;}
 .section-head p{margin-top:16px;color:var(--steel);font-size:16px;max-width:56ch;}
 .section-alt{background:var(--black-2);border-top:1px solid var(--panel-line);border-bottom:1px solid var(--panel-line);}
 
+/* =========================== GOOGLE REVIEWS =========================== */
+.review-panel{
+  max-width:620px;margin:0 auto;text-align:center;
+  display:flex;flex-direction:column;align-items:center;
+}
+.review-panel-icon{width:34px;height:34px;color:var(--steel);margin-bottom:18px;}
+.review-panel .eyebrow{margin-bottom:6px;}
+.review-panel .eyebrow::before{display:none;}
+.review-stars{display:flex;gap:6px;margin:18px 0 6px;}
+.review-stars svg{width:22px;height:22px;color:var(--blue-bright);}
+.review-panel h2{font-size:clamp(26px,3.2vw,36px);color:var(--white);margin-top:6px;}
+.review-panel p{margin-top:14px;color:var(--steel);font-size:16px;max-width:52ch;}
+.review-panel .btn{margin-top:28px;}
+
 /* =========================== ABOUT =========================== */
 .about-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:start;margin-bottom:56px;}
 .about-copy p{color:var(--steel);font-size:16px;margin-bottom:16px;}
