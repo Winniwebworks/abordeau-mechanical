@@ -133,4 +133,38 @@
       }
     });
   }
+
+  /* ---------- project photo galleries ---------- */
+  document.querySelectorAll("[data-gallery]").forEach(function (gallery) {
+    var images = Array.prototype.slice.call(gallery.querySelectorAll(".project-media-img"));
+    var dots = Array.prototype.slice.call(gallery.querySelectorAll(".gallery-dot"));
+    var prevBtn = gallery.querySelector(".gallery-prev");
+    var nextBtn = gallery.querySelector(".gallery-next");
+    var current = 0;
+
+    function show(index) {
+      current = (index + images.length) % images.length;
+      images.forEach(function (img, i) {
+        img.classList.toggle("is-active", i === current);
+      });
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle("is-active", i === current);
+      });
+    }
+
+    if (prevBtn) prevBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      show(current - 1);
+    });
+    if (nextBtn) nextBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      show(current + 1);
+    });
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function (e) {
+        e.preventDefault();
+        show(i);
+      });
+    });
+  });
 })();
