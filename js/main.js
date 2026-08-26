@@ -47,55 +47,59 @@
     });
   });
 
-  /* ---------- quote form -> Formspree ---------- */
-  var quoteForm = document.getElementById("quote-form");
-  if (quoteForm) {
-    quoteForm.addEventListener("submit", function (e) {
+  /* ---------- shared Formspree submit handler ---------- */
+  var SUBMIT_SUCCESS_HTML =
+    "<strong>Thank You \u2014 Your Request Has Been Received.</strong><br>" +
+    "A.Bordeau Mechanical will review your request and contact you as soon as possible.<br>" +
+    "For immediate or 24/7 HVAC service, please call:<br>" +
+    "<a href=\"tel:6033870156\">603-387-0156</a>";
+
+  function wireFormspreeForm(formId, statusId, extraFieldsFn) {
+    var form = document.getElementById(formId);
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      var status = document.getElementById("quote-status");
-      var submitBtn = quoteForm.querySelector("button[type=submit]");
+      var status = document.getElementById(statusId);
+      var submitBtn = form.querySelector("button[type=submit]");
 
-      if (!quoteForm.checkValidity()) {
-        quoteForm.reportValidity();
+      if (!form.checkValidity()) {
+        form.reportValidity();
         return;
       }
 
       if (submitBtn) submitBtn.disabled = true;
       if (status) {
-        status.textContent = "Sending your request\u2026";
+        status.innerHTML = "Sending your request\u2026";
         status.classList.add("is-visible");
       }
 
-      var formData = new FormData(quoteForm);
-      if (!quoteForm.urgent.checked) {
-        formData.set("urgent", "No");
-      }
+      var formData = new FormData(form);
+      if (typeof extraFieldsFn === "function") extraFieldsFn(form, formData);
 
-      fetch(quoteForm.action, {
+      fetch(form.action, {
         method: "POST",
         body: formData,
         headers: { "Accept": "application/json" }
       })
         .then(function (response) {
           if (response.ok) {
-            quoteForm.reset();
-            if (status) {
-              status.textContent = "Thanks! Your service request has been sent \u2014 Andrew will follow up soon.";
-            }
+            form.reset();
+            if (status) status.innerHTML = SUBMIT_SUCCESS_HTML;
           } else {
             response.json().then(function (data) {
               var message = (data && data.errors)
                 ? data.errors.map(function (err) { return err.message; }).join(", ")
                 : "Something went wrong. Please call 603-387-0156 instead.";
-              if (status) status.textContent = message;
+              if (status) status.innerHTML = message;
             }).catch(function () {
-              if (status) status.textContent = "Something went wrong. Please call 603-387-0156 instead.";
+              if (status) status.innerHTML = "Something went wrong. Please call 603-387-0156 instead.";
             });
           }
         })
         .catch(function () {
-          if (status) status.textContent = "Something went wrong. Please call 603-387-0156 instead.";
+          if (status) status.innerHTML = "Something went wrong. Please call 603-387-0156 instead.";
         })
         .finally(function () {
           if (submitBtn) submitBtn.disabled = false;
@@ -103,36 +107,13 @@
     });
   }
 
-  /* ---------- contact form -> mailto ---------- */
-  var contactForm = document.getElementById("contact-form");
-  if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var name = contactForm.name.value.trim();
-      var email = contactForm.email.value.trim();
-      var message = contactForm.message.value.trim();
+  /* ---------- quote form -> Formspree ---------- */
+  wireFormspreeForm("quote-form", "quote-status", function (form, formData) {
+    if (!form.urgent.checked) formData.set("urgent", "No");
+  });
 
-      var subject = "Website Question from " + name;
-      var bodyLines = [
-        "Name: " + name,
-        "Email: " + email,
-        "",
-        "Message:",
-        message || "-"
-      ];
-      var mailto = "mailto:abordeaumechanical@gmail.com" +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(bodyLines.join("\n"));
-
-      window.location.href = mailto;
-
-      var status = document.getElementById("contact-status");
-      if (status) {
-        status.textContent = "Opening your email client to send this message to A. Bordeau Mechanical\u2026";
-        status.classList.add("is-visible");
-      }
-    });
-  }
+  /* ---------- contact form -> Formspree ---------- */
+  wireFormspreeForm("contact-form", "contact-status");
 
   /* ---------- project photo galleries ---------- */
   document.querySelectorAll("[data-gallery]").forEach(function (gallery) {
